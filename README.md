@@ -26,15 +26,15 @@ In the repository you will find instructions and a copy of the files you will ne
 
 ### Prerequisites
 
-> UNIX-like operating system or Ubuntu 14.04 LTS.
-> `gcc`latest version. Recommended version 4.8.4
+> UNIX-like operating system or Ubuntu 14.04 LTS.  
+> `gcc`latest version. Recommended version 4.8.4  
 
 ### Installing
 
 Fork the repository to your local github profile. Git clone to your local machine:
 
-> git clone https://github.com/JamesPagani/simple_shell.git
-> git clone https://github.com/lh1008/simple_shell.git
+> git clone https://github.com/JamesPagani/simple_shell.git  
+> git clone https://github.com/lh1008/simple_shell.git  
 
 ### Running Tests
 
