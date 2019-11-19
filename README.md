@@ -8,7 +8,7 @@ The command line interpreter shell in this proyect is known as the CLI shell. Du
 
 Commands are _built-in_ or external instructions given to the machine to do something such as running a program or executing an action inside the operating system like copying a file to a different directory or changing a files name. The shell is the program that reads the commands typed as input in the machine and then executes/runs them. A shell script is a program allowing the user to execute any commbination of commands.  
 
-Shell scripts contain system calls. System calls are basically assembly language instructions to communicate directly with the kernel. When a system call is executed/called you pass from user mode to kernel mode or priviledged mode. In priviledged mode you have direct access to the kernel. Systems calls are usually made when a process in user mode requires access to a resource or a machine service. A process is simply the name for a program that´s beeing executed. UNIX-like operating systems uses processes to determine the actions taken inside the machine.  
+Shell scripts contain system calls. System calls are basically assembly language instructions to communicate directly with the kernel. When a system call is executed/called you pass from user mode, to kernel mode or priviledged mode. In priviledged mode you have direct access to the kernel. Systems calls are usually made when a process in user mode requires access to a resource or a machine service. A process is simply the name for a program that´s beeing executed. UNIX-like operating systems uses processes to determine the actions taken inside the machine.  
 
 Types of system calls:  
 
