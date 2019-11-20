@@ -1,0 +1,67 @@
+.\" Hsh Simple Shell manpage - Holberton School
+.TH HSH_Simple_SHell 1 "19 November 2019" "v0.1.0" "SIMPLE SHELL PROYECT"
+.SH NAME
+hsh - GNU Holberton-SHell
+.SH SYNOPSIS
+.B #include "headers.h"
+.br
+.SH FILES
+.B AUTHORS
+.br
+.B headers.h
+.br
+.B README.md
+.br
+.B shell.c
+.SH DESCRIPTION
+.B hsh
+simple shell is an input command interpreter that executes specific
+instructions in the system.
+.B hsh
+simple shell parsers
+.I external
+commands such as
+.I ls
+,
+.I cp
+,
+.I mv
+,
+.I cat
+,
+.I less
+, etc. allocated in the
+.I /bin
+directory. This is a simple version expected to output and execute what
+it is asked for.
+.SS Arguments
+The first argument (position 0) is assumed as a file containing shell
+commands. The following arguments and their positional parameters are set
+for the remaining arguments. If the file in the current directory is not
+found the shell will search
+.BR PATH
+directories searching for the script.
+.SS Exit Status
+Once the command is executed the shell will exit status. Exit status occurs
+when the shell command finishes the last command inside the script.
+.SH Example
+An example output produced by the shell is the following:
+.TP
+.B $ cat AUTHORS
+Jaime Andrés Gálvez Villamarin <1167@holbertonschool.com>
+.br
+Luis Alejandro Herrera Bolaños <1209@holbertonschool.com>
+.SH COLOPHON
+.B hsh
+simple shell man page was released for the Project
+.B 0x16. C - Simple Shell,
+at Holberton School first trimester. A description of the project, and
+information about reporting bugs, can be found at
+.BR \%https://github.com/JamesPagani/simple_shell/.
+.SH AUTHOR(S)
+Jaime Andrés Gálvez Villamarin - 1167@holbertonschool.com
+.br
+Luis Alejandro Herrera Bolaños - 1209@holbertonschool.com
+.SH SEE ALSO
+.BR bash(1)
+.BR dash(1)
