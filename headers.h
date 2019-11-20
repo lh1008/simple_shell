@@ -6,8 +6,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 /* Functions used by the shell program */
-
+void parser(char *input);
 
 #endif
