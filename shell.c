@@ -8,7 +8,7 @@
 
 void parser(char *input)
 {
-	const char *delims = " \n\t";
+	const char *delims = " \n\t\r\v\f";
 	char *argv[2] = {NULL, NULL};
 	int status;
 	pid_t child;
@@ -52,6 +52,7 @@ int main(void)
 		write(STDOUT_FILENO, "$ ", 2);
 		gl_check = getline(&buf, &buf_size, stdin);
 	}
+	write(1, "\n", 1);
 	free(buf);
 	return (0);
 }
