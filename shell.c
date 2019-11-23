@@ -20,6 +20,7 @@ void parser(char *input)
 		if (execve(argv[0], argv, NULL) == -1)
 		{
 			write(STDOUT_FILENO, "Not found\n", 10);
+			exit(0);
 		}
 	}
 	else
@@ -52,7 +53,7 @@ int main(void)
 		write(STDOUT_FILENO, "$ ", 2);
 		gl_check = getline(&buf, &buf_size, stdin);
 	}
-	write(1, "\n", 1);
 	free(buf);
+	write(STDOUT_FILENO, "\n", 1);
 	return (0);
 }
