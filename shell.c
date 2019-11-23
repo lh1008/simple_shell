@@ -8,7 +8,7 @@
 
 void parser(char *input)
 {
-	const char *delims = " \n\t";
+	const char *delims = " \n\t\r\v\f";
 	char *argv[2] = {NULL, NULL};
 	int status;
 	pid_t child;
@@ -20,6 +20,7 @@ void parser(char *input)
 		if (execve(argv[0], argv, NULL) == -1)
 		{
 			write(STDOUT_FILENO, "Not found\n", 10);
+			exit(0);
 		}
 	}
 	else
@@ -53,5 +54,6 @@ int main(void)
 		gl_check = getline(&buf, &buf_size, stdin);
 	}
 	free(buf);
+	write(STDOUT_FILENO, "\n", 1);
 	return (0);
 }
