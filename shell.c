@@ -1,4 +1,4 @@
-#include "headers.h"
+B#include "headers.h"
 /**
  * _strcpy - Entry to copy
  * Desc: _strcpy function
@@ -33,7 +33,7 @@ char *_strcpy(char *dest, char *src)
 void parser(char *input, size_t size)
 {
 	const char *delims = " \n\t\r\v\f";
-	char **argv, *tok;
+	char *argv[32], *tok;
 	char *bufback = NULL;
 	int status, counter = 0;
 	pid_t child;
@@ -44,19 +44,19 @@ void parser(char *input, size_t size)
 	tok = strtok(bufback, delims);
 	while (tok != '\0')
 	{
-		counter++;
+		argv[counter] = tok;
 		tok = strtok(NULL, delims);
+		counter++;
 	}
+	argv[counter] = NULL;
 
-	argv = malloc(sizeof(char *) * counter);
-
-	argv[0] = strtok(input, delims);
 	child = fork();
 	if (child == 0)
 	{
 		if (execve(argv[0], argv, NULL) == -1)
 		{
 			write(STDOUT_FILENO, "Not found\n", 10);
+
 			exit(0);
 		}
 	}
