@@ -27,19 +27,29 @@ char *_strcpy(char *dest, char *src)
  * parser - Parses the input into something the executor can understand
  * Desc: parser function
  * @input: Raw user input
+ * @size: Size of bufer
  * Return: Nothing
  */
 void parser(char *input, size_t size)
 {
 	const char *delims = " \n\t\r\v\f";
-	char *argv[2] = {NULL, NULL};
+	char **argv, *tok;
 	char *bufback = NULL;
-	int status;
+	int status, counter = 0;
 	pid_t child;
 
 	bufback = malloc(size);
 	_strcpy(bufback, input);
-	
+
+	tok = strtok(bufback, delims);
+	while (tok != '\0')
+	{
+		counter++;
+		tok = strtok(NULL, delims);
+	}
+
+	argv = malloc(sizeof(char *) * counter);
+
 	argv[0] = strtok(input, delims);
 	child = fork();
 	if (child == 0)
