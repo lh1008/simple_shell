@@ -10,6 +10,7 @@
 #include <sys/wait.h>
 
 /* Functions used by the shell program */
-void parser(char *input);
+void parser(char *input, size_t size);
+char *_strcpy(char *dest, char *src);
 
 #endif

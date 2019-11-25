@@ -1,19 +1,55 @@
 #include "headers.h"
+/**
+ * _strcpy - Entry to copy
+ * Desc: _strcpy function
+ * @dest: pointer to char type
+ * @src: pointer to char type
+ * Return: Return copy of src to dest
+ **/
+char *_strcpy(char *dest, char *src)
+{
+	int i = 0;
+
+	if (src[i] != '\0')
+	{
+		while (src[i] != '\0')
+		{
+			dest[i] = src[i];
+			if (src[i + 1] == '\0')
+				dest[i + 1] = src[i + 1];
+			i++;
+		}
+	}
+	return (dest);
+}
 
 /**
  * parser - Parses the input into something the executor can understand
+ * Desc: parser function
  * @input: Raw user input
+ * @size: Size of bufer
  * Return: Nothing
  */
-
-void parser(char *input)
+void parser(char *input, size_t size)
 {
 	const char *delims = " \n\t\r\v\f";
-	char *argv[2] = {NULL, NULL};
-	int status;
+	char *argv[32], *tok;
+	char *bufback = NULL;
+	int status, counter = 0;
 	pid_t child;
 
-	argv[0] = strtok(input, delims);
+	bufback = malloc(size);
+	_strcpy(bufback, input);
+
+	tok = strtok(bufback, delims);
+	while (tok != '\0')
+	{
+		argv[counter] = tok;
+		tok = strtok(NULL, delims);
+		counter++;
+	}
+	argv[counter] = NULL;
+
 	child = fork();
 	if (child == 0)
 	{
@@ -27,6 +63,7 @@ void parser(char *input)
 	{
 		wait(&status);
 	}
+	free(bufback);
 }
 
 /**
@@ -49,7 +86,7 @@ int main(void)
 	gl_check = getline(&buf, &buf_size, stdin);
 	while (gl_check != -1)
 	{
-		parser(buf);
+		parser(buf, buf_size);
 		write(STDOUT_FILENO, "$ ", 2);
 		gl_check = getline(&buf, &buf_size, stdin);
 	}
