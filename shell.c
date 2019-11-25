@@ -56,7 +56,6 @@ void parser(char *input, size_t size)
 		if (execve(argv[0], argv, NULL) == -1)
 		{
 			write(STDOUT_FILENO, "Not found\n", 10);
-
 			exit(0);
 		}
 	}
@@ -64,6 +63,7 @@ void parser(char *input, size_t size)
 	{
 		wait(&status);
 	}
+	free(bufback);
 }
 
 /**
