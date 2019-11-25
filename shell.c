@@ -1,4 +1,4 @@
-B#include "headers.h"
+#include "headers.h"
 /**
  * _strcpy - Entry to copy
  * Desc: _strcpy function
