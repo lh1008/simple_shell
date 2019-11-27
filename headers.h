@@ -9,7 +9,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-
+#include <sys/stat.h>
 /* Structures used by the shell program */
 /**
  * struct u_input - Contains information regarding the input to the shell
@@ -34,4 +34,7 @@ char *_strcpy(char *dest, char *src);
 void n_interactve(input in);
 void interactive(input in);
 size_t tok_count(input in, const char *delims);
+char *_getenv(char *argv);
+int _strncmp(const char *s1, const char *s2, size_t n);
+int _strlen(const char *s);
 #endif
