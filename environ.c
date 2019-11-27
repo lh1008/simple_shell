@@ -54,7 +54,7 @@ int _strncmp(const char *s1, const char *s2, size_t n)
 /**
  * _getenv - Entry
  * Desc: _getenv function
- * @name: pointer to char const
+ * @argv: pointer to char const
  * Return: pointer
  **/
 char *_getenv(char *argv)
@@ -77,11 +77,10 @@ char *_getenv(char *argv)
 			{
 				tmp = malloc(_strlen(tok) + _strlen(argv));
 				strcat(tmp, tok);
-//				if (tmp[j - 1] != '/')
 					strcat(tmp, "/");
 				strcat(tmp, argv);
 				if (stat(tmp, &st) == 0)
-					return(tmp);
+					return (tmp);
 				printf("%s\n", tmp);
 				free(tmp);
 				tok = strtok(NULL, delims);
@@ -91,12 +90,14 @@ char *_getenv(char *argv)
 		i++;
 	}
 	putchar('\n');
-	return(argv);
+	return (argv);
 }
 /**
  * main - Entry point
  * Desc: main function
- *
+ * @ac: int type
+ * @av: char pointer to pointer char
+ * @env: char pointer to pointer char
  * Return: Program  that prints the environment
  **/
 int main(int ac, char **av, char **env)
