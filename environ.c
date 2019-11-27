@@ -67,19 +67,20 @@ char *_getenv(char *argv)
 		{
 			toki = strtok(environ[i], d);
 			toki = strtok(NULL, "=");
-			tok = strtok(toki, delims);
-			while (tok != '\0')
-			{
-				tmp = malloc(_strlen(tok) + _strlen(argv));
-				strcat(tmp, tok);
-					strcat(tmp, "/");
-				strcat(tmp, argv);
-				if (stat(tmp, &st) == 0)
-					return (tmp);
-				free(tmp);
-				tok = strtok(NULL, delims);
-				j++;
-			}
+			i++;
+	       	}
+		tok = strtok(toki, delims);
+		while (tok != '\0')
+		{
+			tmp = malloc(_strlen(tok) + _strlen(argv));
+			strcat(tmp, tok);
+			strcat(tmp, "/");
+			strcat(tmp, argv);
+			if (stat(tmp, &st) == 0)
+				return (tmp);
+			free(tmp);
+			tok = strtok(NULL, delims);
+			j++;
 		}
 		i++;
 	}

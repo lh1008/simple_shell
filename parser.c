@@ -33,9 +33,9 @@ char *_strcpy(char *dest, char *src)
 void parser(char *input, size_t size)
 {
 	const char *delims = " \n\t\r";
-	char *argv[32], *tok;
+	char *argv[32], *tok, *pad;
 	char *bufback = NULL;
-	int status, counter = 0;
+	int status, counter = 0, exer;
 	pid_t child;
 
 	bufback = malloc(size);
@@ -45,15 +45,17 @@ void parser(char *input, size_t size)
 	while (tok != '\0')
 	{
 		argv[counter] = tok;
+
 		tok = strtok(NULL, delims);
 		counter++;
 	}
 	argv[counter] = NULL;
-
+	pad = _getenv(argv[0]);
 	child = fork();
 	if (child == 0)
 	{
-		if (execve(argv[0], argv, NULL) == -1)
+		exer = execve(pad, argv, NULL);
+		if (exer == -1)
 		{
 			write(STDOUT_FILENO, "Not found\n", 10);
 			exit(0);
