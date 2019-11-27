@@ -46,24 +46,24 @@ int _strncmp(const char *s1, const char *s2, size_t n)
  * _getenv - Entry
  * Desc: _getenv function
  * @argv: pointer to char const
+ * @env: env variable
  * Return: pointer
  **/
-char *_getenv(char *argv)
+char *_getenv(char *argv, char **env)
 {
 	int i = 0, j = 0;
 	char *tok, *tmp, *toki;
 	const char *delims = ":";
 	const char *d = "=";
-	extern char **environ;
 	char *path;
 	struct stat st;
 
-	while (environ[i] != NULL)
+	while (env[i] != NULL)
 	{
-		if ((_strncmp(environ[i], "PATH=", 5) == 0))
+		if ((_strncmp(env[i], "PATH=", 5) == 0))
 		{
-			path = malloc(_strlen(environ[i]) + 1);
-			_strcpy(path, environ[i]);
+			path = malloc(_strlen(env[i]) + 1);
+			_strcpy(path, env[i]);
 			toki = strtok(path, d);
 			toki = strtok(NULL, "=");
 			i++;
