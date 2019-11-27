@@ -24,44 +24,65 @@ char *_strcpy(char *dest, char *src)
 }
 
 /**
+ * tok_count - Counts the amount of tokens
+ * @buffer: String to "tokenize"
+ * Return: Amount of tokens found
+ */
+
+size_t tok_count(input in, const char *delims)
+{
+	char *buf_back, *tok;
+	size_t counter = 0;
+
+	buf_back = malloc(in.size);
+	if (buf_back == NULL)
+	{
+		perror(in.sh_name);
+		return (0);
+	}
+	_strcpy(buf_back, in.buffer);
+
+	tok = strtok(buf_back, delims);
+	while(tok != NULL)
+	{
+		counter++;
+		tok = strtok(NULL, delims);
+	}
+
+	free(buf_back);
+	return (counter);
+}
+
+
+/**
  * parser - Parses the input into something the executor can understand
  * Desc: parser function
  * @input: Raw user input
  * @size: Size of bufer
- * Return: Nothing
+ * Return: An array of tokens ready to be used with execve
  */
-void parser(char *input, size_t size)
+char **parser(input in)
 {
 	const char *delims = " \n\t\r";
-	char *argv[32], *tok;
-	char *bufback = NULL;
+	char **argv, *tok;
 	int status, counter = 0;
 	pid_t child;
+	size_t tok_amount = 0, tok_counter = 0;
 
-	bufback = malloc(size);
-	_strcpy(bufback, input);
-
-	tok = strtok(bufback, delims);
-	while (tok != '\0')
+	tok_amount = tok_count(in, delims);
+	argv = malloc((tok_amount + 1) * sizeof(char *));
+	if (argv == NULL)
 	{
-		argv[counter] = tok;
+		perror(in.sh_name);
+		return (NULL);
+	}
+
+	tok = strtok(in.buffer, delims);
+	while (tok_counter < tok_amount)
+	{
+		argv[tok_counter] = tok;
+		tok_counter++;
 		tok = strtok(NULL, delims);
-		counter++;
 	}
-	argv[counter] = NULL;
-
-	child = fork();
-	if (child == 0)
-	{
-		if (execve(argv[0], argv, NULL) == -1)
-		{
-			write(STDOUT_FILENO, "Not found\n", 10);
-			exit(0);
-		}
-	}
-	else
-	{
-		wait(&status);
-	}
-	free(bufback);
+	return (argv);
 }

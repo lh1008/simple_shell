@@ -1,4 +1,4 @@
-#include "headers.h" 
+#include "headers.h"
 char *_getenv(char *argv);
 int _strncmp(const char *s1, const char *s2, size_t n);
 int _strlen(const char *s);
