@@ -59,13 +59,16 @@ char *_getenv(char *argv)
 	const char *delims = ":";
 	const char *d = "=";
 	extern char **environ;
+	char *path;
 	struct stat st;
 
 	while (environ[i] != NULL)
 	{
 		if ((_strncmp(environ[i], "PATH=", 5) == 0))
 		{
-			toki = strtok(environ[i], d);
+			path = malloc(_strlen(environ[i]) + 1);
+		        _strcpy(path, environ[i]);
+			toki = strtok(path, d);
 			toki = strtok(NULL, "=");
 			i++;
 	       	}
@@ -84,6 +87,7 @@ char *_getenv(char *argv)
 		}
 		i++;
 	}
+	free(path);
 	putchar('\n');
 	return (argv);
 }
