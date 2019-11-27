@@ -8,8 +8,9 @@
 
 void n_interactive(input in)
 {
-	char **argv;
+	char **argv, *f_path;
 	int exec_val, status;
+	struct stat check;
 	pid_t child;
 
 	argv = parser(in);
@@ -17,7 +18,11 @@ void n_interactive(input in)
 	child = fork();
 	if (child == 0)
 	{
-		exec_val = execve(argv[0], argv, NULL);
+		if (stat(argv[0], &check) == -1)
+			f_path = _getenv(argv[0]);
+		else
+			f_path = argv[0];
+		exec_val = execve(f_path, argv, NULL);
 		if (exec_val == -1)
 		{
 			perror(in.sh_name);
@@ -38,10 +43,11 @@ void n_interactive(input in)
 
 void interactive(input in)
 {
-	char **argv;
+	char **argv, *f_path;
 	int exec_val, status;
 	pid_t child;
 	ssize_t gl_check;
+	struct stat check;
 
 	if (write(STDOUT_FILENO, "$ ", 2) == -1)
 	{
@@ -55,7 +61,12 @@ void interactive(input in)
 		child = fork();
 		if (child == 0)
 		{
-			exec_val = execve(argv[0], argv, NULL);
+			if (stat(argv[0], &check) == -1)
+				f_path = _getenv(argv[0]);
+			else
+				f_path = argv[0];
+			printf("f_path: %s\n", f_path);
+			exec_val = execve(f_path, argv, NULL);
 			if (exec_val == -1)
 			{
 				perror(in.sh_name);
