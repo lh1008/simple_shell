@@ -4,7 +4,7 @@
  * Return: 0 on success, anything else on failure
  */
 
-int main(void)
+int main(int ac, char **av, char **env)
 {
 	ssize_t wr_check, gl_check;
 	char *buf = NULL;

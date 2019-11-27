@@ -1,9 +1,4 @@
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <stdlib.h>
+#include "headers.h"
 char *_getenv(char *argv);
 int _strncmp(const char *s1, const char *s2, size_t n);
 int _strlen(const char *s);
@@ -81,7 +76,6 @@ char *_getenv(char *argv)
 				strcat(tmp, argv);
 				if (stat(tmp, &st) == 0)
 					return (tmp);
-				printf("%s\n", tmp);
 				free(tmp);
 				tok = strtok(NULL, delims);
 				j++;
@@ -91,16 +85,4 @@ char *_getenv(char *argv)
 	}
 	putchar('\n');
 	return (argv);
-}
-/**
- * main - Entry point
- * Desc: main function
- * @ac: int type
- * @av: char pointer to pointer char
- * @env: char pointer to pointer char
- * Return: Program  that prints the environment
- **/
-int main(int ac, char **av, char **env)
-{
-	_getenv(av[1]);
 }
