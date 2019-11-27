@@ -35,7 +35,7 @@ void parser(char *input, size_t size)
 	const char *delims = " \n\t\r";
 	char *argv[32], *tok, *pad;
 	char *bufback = NULL;
-	int status, counter = 0, exer;
+	int status, counter = 0, exer, j = 0;
 	pid_t child;
 
 	bufback = malloc(size);
@@ -51,6 +51,12 @@ void parser(char *input, size_t size)
 	}
 	argv[counter] = NULL;
 	pad = _getenv(argv[0]);
+	while (argv[j] != NULL)
+	{
+		printf("argv[%d]: %s\n", j, argv[j]);
+		j++;
+	}
+	printf("pad: %s\n", pad);
 	child = fork();
 	if (child == 0)
 	{
