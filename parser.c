@@ -25,7 +25,8 @@ char *_strcpy(char *dest, char *src)
 
 /**
  * tok_count - Counts the amount of tokens
- * @buffer: String to "tokenize"
+ * @in: struct input
+ * @delims: delimiters
  * Return: Amount of tokens found
  */
 
@@ -43,7 +44,7 @@ size_t tok_count(input in, const char *delims)
 	_strcpy(buf_back, in.buffer);
 
 	tok = strtok(buf_back, delims);
-	while(tok != NULL)
+	while (tok != NULL)
 	{
 		counter++;
 		tok = strtok(NULL, delims);
@@ -57,8 +58,7 @@ size_t tok_count(input in, const char *delims)
 /**
  * parser - Parses the input into something the executor can understand
  * Desc: parser function
- * @input: Raw user input
- * @size: Size of bufer
+ * @in: typedef struct
  * Return: An array of tokens ready to be used with execve
  */
 char **parser(input in)

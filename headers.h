@@ -31,10 +31,10 @@ typedef struct u_input
 /* Functions used by the shell program */
 char **parser(input in);
 char *_strcpy(char *dest, char *src);
-void n_interactve(input in);
-void interactive(input in);
+void n_interactve(input in, char **env);
+void interactive(input in, char **env);
 size_t tok_count(input in, const char *delims);
-char *_getenv(char *argv);
+char *_getenv(char *argv, char **env);
 int _strncmp(const char *s1, const char *s2, size_t n);
 int _strlen(const char *s);
 #endif
